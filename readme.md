@@ -210,3 +210,33 @@ db.books.find({
     rating: {$in: [7, 8, 9]}
 })
 ```
+
+
+## Querying Arrays
+
+```js
+// if one of the genres has fantasy
+// dont treat it as an exact match
+db.books.find({
+    genres: "fantasy"
+})
+
+// for exact matching
+db.books.find({
+    genres: ["fantasy", "magic"]
+})
+
+// check if the genres property has fantasy and sci-fi
+// this is not an exact matching, if genres has 4 genres, and it has fantasy and scifi, it will return the document
+db.books.find({
+    genres: {
+        $all: ["fantasy", "sci-fi"]
+    }
+})
+
+// query based on the structure
+// use dot notation, make field as a string
+db.books.find({
+    "reviews.name": "Yoshi"
+})
+```
