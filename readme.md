@@ -104,6 +104,46 @@ db.authors.insertOne({ name: "Brandon Sanderson", age: 60 })
 ```
 
 3. use insertMany for multiple inserts
+
 ```mongodb
 db.books.insertMany([{...}, {...}, ...])
+```
+
+## Finding MongoDB Objects
+- using find() - this will return the first 20 books
+
+```shell
+db.books.find()
+```
+
+- it - to iterate 20 more books
+```shell
+it
+```
+
+- using filters, supply an object
+    - find all books where author = 'Terry'
+```shell
+db.books.find({author: 'Terry'})
+```
+
+- using filter with multiple predicate
+```shell
+db.books.find({author: 'Terry', rating: 7})
+```
+
+- 2nd parameter of filter, what properties would you want to get
+    - Ex: get only title and author
+```shell
+db.books.find({author: 'Terry'}, { title: 1, author: 1 })
+```
+
+- if you want to get all the books, but now filtering the properties that you need, supply the 1st parameter as an empty object
+```shell
+db.books.find({}, { author: 1, title: 1 })
+```
+
+- findOne method
+```shell
+db.books.findOne({_id:ObjectId("64c67fc0eeb512142f45253f") })
 ```
