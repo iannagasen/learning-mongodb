@@ -176,3 +176,29 @@ db.books.find().sort({title: 1}).limit(3)
 ```shell
 db.books.insertOne({ title: 'The Way of Kings', author: 'Brandon Sanderson', rating: 9, pages: 400, genres: ['fantasy'], reviews: [{ name: "Yoshi", body: "Great Book!"}, {name:"Ian", body: "so so"}]})
 ```
+
+## Operations and Complex Queries
+- Operators in MongoDB are denoted by `$`
+```js
+// $gt - greater than
+// $lt - less than
+// $lte - less than or equal to
+// $gte - greater than or equal to
+// return all books where rating > 7
+db.books.find({rating: { $gt: 7 }})
+
+// get all the books where the rating is 7 or ( rating is 9 or author is Brandon Sanderson
+db.books.find({$or: [
+    { rating: 7 },
+    { rating: 9 , author: 'Brandon Sanderson'}    
+]})
+
+
+// find all books where pages < 300 or pages > 400
+db.books.find({
+    $or: [
+        { pages: { $lt: 300 }},
+        { pages: { $gt: 400 }}
+    ]
+})
+```
