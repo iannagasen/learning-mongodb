@@ -202,3 +202,11 @@ db.books.find({
     ]
 })
 ```
+
+## using $in and $nin - to reduce using $or for multiple predicates
+- accepts an array as value
+```js
+db.books.find({
+    rating: {$in: [7, 8, 9]}
+})
+```
