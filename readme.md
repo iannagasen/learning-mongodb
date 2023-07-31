@@ -147,3 +147,23 @@ db.books.find({}, { author: 1, title: 1 })
 ```shell
 db.books.findOne({_id:ObjectId("64c67fc0eeb512142f45253f") })
 ```
+
+## Sorting and Limiting data (using method chaining)
+
+1. `count()`
+```shell
+db.books.find().count()
+db.books.find({author: 'Terry'}).count()
+```
+
+2. `limit()`
+```shell
+db.books.find().limit(3)
+db.books.find().limit(4).count()
+```
+
+3. `sort()` - `-1` for Descending, `1` for Ascending
+```shell
+db.books.find().sort({title: -1})
+db.books.find().sort({title: 1}).limit(3)
+```
