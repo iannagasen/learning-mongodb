@@ -167,3 +167,12 @@ db.books.find().limit(4).count()
 db.books.find().sort({title: -1})
 db.books.find().sort({title: 1}).limit(3)
 ```
+
+
+## Nested Documents
+- a value of a field could also be a nested document
+- can improve read performance
+- insert a book document with a nested review document
+```shell
+db.books.insertOne({ title: 'The Way of Kings', author: 'Brandon Sanderson', rating: 9, pages: 400, genres: ['fantasy'], reviews: [{ name: "Yoshi", body: "Great Book!"}, {name:"Ian", body: "so so"}]})
+```
